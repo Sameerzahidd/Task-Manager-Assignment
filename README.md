@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# TaskManager
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack task management system with nested task capabilities, drag-and-drop functionality, and user authentication.
 
-## Available Scripts
+[View Project Demo](https://www.loom.com/share/074b5e0650e84b55b6bdf797f256fc25?sid=6479f2f7-f561-4ced-832a-ef0ab1c6dc45)
 
-In the project directory, you can run:
+[GitHub Repository](https://github.com/Sameerzahidd/TaskManager)
 
-### `npm start`
+## Table of Contents
+1. [Features](#features)
+2. [Prerequisites](#prerequisites)
+3. [Technology Stack](#technology-stack)
+4. [Project Structure](#project-structure)
+5. [Setup & Installation](#setup--installation)
+6. [API Endpoints](#api-endpoints)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
+- User authentication and authorization
+- Create, read, update, and delete tasks
+- Nested subtasks with unlimited depth
+- Drag-and-drop task organization
+- Real-time task status updates
+- Secure password hashing
+- Cross-Origin Resource Sharing (CORS) support
+- Session management with Flask-Login
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Prerequisites
+- Python 3.8+
+- Node.js 14+
+- Git
+- SQLite (default) or PostgreSQL
 
-### `npm test`
+## Technology Stack
+### Backend
+- Flask
+- Flask-Login (authentication)
+- Flask-SQLAlchemy (ORM)
+- Flask-CORS
+- Werkzeug (password hashing)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend
+- React
+- React DnD (drag-and-drop)
+- React Router
+- Axios
+- Tailwind CSS
 
-### `npm run build`
+## Project Structure
+```
+TaskManager/
+├── backend/
+│   ├── auth.py          # Authentication routes
+│   ├── tasks.py         # Task management routes
+│   ├── models.py        # Database models
+│   ├── server.py        # Main Flask application
+│   └── requirements.txt
+└── frontend/
+    ├── src/
+    │   ├── components/
+    │   ├── contexts/
+    │   ├── pages/
+    │   └── App.js
+    └── package.json
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Setup & Installation
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Backend Setup
+```bash
+# Clone the repository
+git clone https://github.com/Sameerzahidd/TaskManager.git
+cd TaskManager/backend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-### `npm run eject`
+# Install dependencies
+pip install -r requirements.txt
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Set environment variables (create .env file)
+echo "DATABASE_URI=sqlite:///database.db
+SECRET_KEY=your_secret_key_here" > .env
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Run the server
+python server.py
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Frontend Setup
+```bash
+cd ../frontend
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Install dependencies
+npm install
 
-## Learn More
+# Start the development server
+npm start
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## API Endpoints
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Authentication
+- `POST /api/signup` - Register new user
+- `POST /api/login` - User login
+- `POST /api/logout` - User logout
+- `GET /api/current_user` - Get current user info
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Tasks
+- `GET /api/GetLists` - Retrieve all lists
+- `GET /api/GetTasks/<list_id>` - Get tasks for specific list
+- `POST /api/AddTask/<list_id>` - Create new task
+- `POST /api/AddSubtasks` - Add subtask to existing task
+- `DELETE /api/DeleteTask/<task_id>` - Delete task
+- `PUT /api/EditTask/<task_id>` - Update task details
+- `PUT /api/TaskCompleted/<task_id>` - Toggle task completion
+- `PUT /api/moveTask/<task_id>` - Move task between lists
