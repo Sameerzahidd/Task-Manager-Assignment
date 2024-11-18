@@ -1,18 +1,10 @@
 # TaskManager
 
-A full-stack task management system with nested task capabilities, drag-and-drop functionality, and user authentication.
+## A full-stack task management system with nested task capabilities, drag-and-drop functionality, and user authentication.
 
 [View Project Demo](https://www.loom.com/share/074b5e0650e84b55b6bdf797f256fc25?sid=6479f2f7-f561-4ced-832a-ef0ab1c6dc45)
 
 [GitHub Repository](https://github.com/Sameerzahidd/TaskManager)
-
-## Table of Contents
-1. [Features](#features)
-2. [Prerequisites](#prerequisites)
-3. [Technology Stack](#technology-stack)
-4. [Project Structure](#project-structure)
-5. [Setup & Installation](#setup--installation)
-6. [API Endpoints](#api-endpoints)
 
 ## Features
 - User authentication and authorization
